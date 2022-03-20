@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <regex>
 using namespace std;
 
 class Labirinto
@@ -9,6 +10,7 @@ class Labirinto
     private:
 
     vector<vector<int>> labirinto;
+    int vitimaCount;
 
     public:
 
@@ -16,4 +18,5 @@ class Labirinto
     ~Labirinto();
 
     void imprimeLabirinto();
+    void PreencheLabirinto();
 };
