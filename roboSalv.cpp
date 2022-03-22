@@ -14,5 +14,7 @@ RoboSalv::~RoboSalv()
 
 void RoboSalv::imprimirDados()
 {
-    cout << bateria << " " << tempo << " " << carga << endl;
+    cout << "Robo Salvador dados: " << "bateria = " << bateria 
+    << "; tempo = " << tempo << 
+    "; carga = " << carga << endl;
 }

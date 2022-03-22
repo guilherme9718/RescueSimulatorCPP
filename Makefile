@@ -1,2 +1,2 @@
 all:
-	g++ -o rescue main.cpp robo.cpp roboVasc.cpp roboSalv.cpp labirinto.cpp
+	g++ -g main.cpp robo.cpp roboVasc.cpp roboSalv.cpp labirinto.cpp percepcao.h acoes.cpp -o rescue.out

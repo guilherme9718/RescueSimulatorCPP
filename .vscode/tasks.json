@@ -7,12 +7,12 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "${fileDirname}/*.cpp",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "rescue.out"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": ""
             },
             "problemMatcher": [
                 "$gcc"

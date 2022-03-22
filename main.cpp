@@ -4,6 +4,8 @@
 
 #include <fstream>
 #include <iostream>
+#include <thread>
+#include <chrono>
 using namespace std;
 
 void inicializarLabirinto(RoboVasc** v, RoboSalv** s, Labirinto** l)
@@ -33,16 +35,19 @@ void inicializarLabirinto(RoboVasc** v, RoboSalv** s, Labirinto** l)
         dados.push_back(aux);
     }
 
-    *v = new RoboVasc(dados[0], dados[1], dados[4], dados[2]);
+    *l = new Labirinto(dados[0], dados[1]);
+
+    *v = new RoboVasc(dados[0], dados[1], dados[4], dados[2], *l);
 
     *s = new RoboSalv(dados[6], dados[5], dados[3]);
-
-    *l = new Labirinto(dados[0], dados[1]);
 
 }
 
 int main()
 {
+    using namespace std::this_thread;
+    using namespace std::chrono;
+
     RoboVasc* vasc;
     RoboSalv* salv;
     Labirinto* lab;
@@ -53,4 +58,12 @@ int main()
     salv->imprimirDados();
     lab->imprimeLabirinto();
 
+    while(vasc->completou == false) {
+        system("clear");
+        vasc->deliberar();
+        lab->imprimeLabirinto();
+        sleep_for(milliseconds(1500));
+    }
+    
+    return 0;
 }
