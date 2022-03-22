@@ -62,7 +62,8 @@ int main()
         system("clear");
         vasc->deliberar();
         lab->imprimeLabirinto();
-        sleep_for(milliseconds(1500));
+        vasc->imprimirMapa();
+        sleep_for(milliseconds(300));
     }
     
     return 0;

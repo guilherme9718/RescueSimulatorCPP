@@ -1,22 +1,23 @@
 #include "roboVasc.h"
 #include "labirinto.h"
 
-RoboVasc::RoboVasc(int x, int y, float bat, float temp, Labirinto *amb) : Robo(bat, temp)
+RoboVasc::RoboVasc(int maxLin, int maxCol, float bat, float temp, Labirinto *amb) : Robo(bat, temp)
 {
-    ultimaPer.posx = x;
-    ultimaPer.posy = y;
+    ultimaPer.posx = 0;
+    ultimaPer.posy = 0;
     ultimaPer.sucesso = false;
 
-    for (int i = 0; i < 8; i++)
+    for (int i = 1; i <= 4; i++)
         acoes.push_back(i);
     ambiente = amb;
-    for (int i = 0; i < x; i++)
+    for (int i = 0; i < maxLin; i++)
     {
-        vector<int> aux;
-        for (int j = 0; j < y; j++)
-            aux.push_back(-1);
-        mapa.push_back(aux);
+        vector<int> *aux = new vector<int>;
+        for (int j = 0; j < maxCol; j++)
+            aux->push_back(-1);
+        mapa.push_back(*aux);
     }
+    mapa[0][0] = 1;
 }
 
 RoboVasc::~RoboVasc()
@@ -39,8 +40,7 @@ void RoboVasc::deliberar()
 {
     if (ultimaPer.sucesso)
     {
-        posx = ultimaPer.posx;
-        posy = ultimaPer.posy;
+        mapa[posx][posy] = ultimaPer.objeto;
         if (ultimaPer.objeto > 1)
         {
             // TODO - ler sinais vitais
@@ -49,6 +49,10 @@ void RoboVasc::deliberar()
     }
     else
     {
+        if ((ultimaPer.posx >= 0 && ultimaPer.posx < mapa.size()) && 
+        (ultimaPer.posy >= 0 && ultimaPer.posy < mapa[ultimaPer.posx].size()))
+            if (mapa[ultimaPer.posx][ultimaPer.posy] == -1)
+                mapa[ultimaPer.posx][ultimaPer.posy] = 0;
         int aux = acoes.front();
         acoes.remove(acoes.front());
         acoes.push_back(aux);
@@ -58,7 +62,16 @@ void RoboVasc::deliberar()
 
 void RoboVasc::decidirMovimento()
 {
-    switch (acoes.front())
+    int acaoEscolhida = acoes.front();
+    list<int>::iterator it;
+    for (it = acoes.begin(); it != acoes.end(); ++it)
+    {
+        if (explorado(*it) == -1) {
+            acaoEscolhida = *it;
+            break;
+        }
+    }
+    switch (acaoEscolhida)
     {
     case 1:
         ultimaPer = ambiente->moverNorte(this);
@@ -87,4 +100,55 @@ void RoboVasc::decidirMovimento()
     default:
         break;
     }
+}
+
+int RoboVasc::explorado(int mov)
+{
+    switch (mov)
+    {
+    case 1:
+        if (IndiceSeguroMatriz(posx - 1, posy, mapa.size(), mapa[0].size()))
+            return mapa[posx - 1][posy];
+        break;
+    case 2:
+        if (IndiceSeguroMatriz(posx + 1, posy, mapa.size(), mapa[0].size()))
+            return mapa[posx + 1][posy];
+        break;
+    case 3:
+        if (IndiceSeguroMatriz(posx, posy + 1, mapa.size(), mapa[0].size()))
+            return mapa[posx][posy + 1];
+        break;
+    case 4:
+        if (IndiceSeguroMatriz(posx, posy - 1, mapa.size(), mapa[0].size()))
+            return mapa[posx][posy - 1];
+        break;
+    case 5:
+        if (IndiceSeguroMatriz(posx - 1, posy + 1, mapa.size(), mapa[0].size()))
+            return mapa[posx - 1][posy + 1];
+        break;
+    case 6:
+        if (IndiceSeguroMatriz(posx - 1, posy - 1, mapa.size(), mapa[0].size()))
+            return mapa[posx - 1][posy - 1];
+        break;
+    case 7:
+        if (IndiceSeguroMatriz(posx + 1, posy + 1, mapa.size(), mapa[0].size()))
+            return mapa[posx + 1][posy + 1];
+        break;
+    case 8:
+        if (IndiceSeguroMatriz(posx + 1, posy - 1, mapa.size(), mapa[0].size()))
+            return mapa[posx + 1][posy - 1];
+        break;
+    default:
+        return 0;
+        break;
+    }
+}
+
+bool RoboVasc::IndiceSeguroMatriz(int i, int j, int maxI, int maxJ)
+{
+    if (i >= 0 && i < maxI && j >= 0 && j < maxJ)
+    {
+        return true;
+    }
+    return false;
 }

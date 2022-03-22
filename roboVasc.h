@@ -16,11 +16,10 @@ class RoboVasc: public Robo
     //8 - Sudoeste
 
     private:
-    vector<vector<int>> mapa;
     Labirinto* ambiente;
     list<int> acoes;
     void decidirMovimento();
-
+    int explorado(int mov);
     public:
     
     RoboVasc(int x, int y, float bat, float temp, Labirinto* amb);
@@ -28,4 +27,5 @@ class RoboVasc: public Robo
 
     void imprimirDados();
     void deliberar();
+    bool IndiceSeguroMatriz(int i, int j, int maxI, int maxJ);
 };

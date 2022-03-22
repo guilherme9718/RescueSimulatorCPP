@@ -10,7 +10,7 @@ class Robo
 {
     protected:
     Percepcao ultimaPer;
-
+    vector<vector<int>> mapa;
     public:
     
     Robo(float bat, float temp);
@@ -22,5 +22,6 @@ class Robo
     float tempo;
 
     bool completou;
-    
+
+    void imprimirMapa();
 };

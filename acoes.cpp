@@ -25,64 +25,71 @@ Percepcao Labirinto::mover(Robo* robo, int movX, int movY) {
         robo->bateria -= 1.0;
         robo->tempo -= 1.0;
     }
-
+    per.posx = movimentoX;
+    per.posy = movimentoY;
+    
     if(validaAcao(robo, movimentoX, movimentoY)) {
-        per.posx = movimentoX;
-        per.posy = movimentoY;
         per.objeto = labirinto[movimentoX][movimentoY];
         per.sucesso = true;
         labirinto[robo->posx][robo->posy] = 1;
         //TODO - Pode sobrepor a vítima no labirinto
         labirinto[movimentoX][movimentoY] = -2;
+        robo->posx = per.posx;
+        robo->posy = per.posy;
     }
     else {
-        per.posx = robo->posx;
-        per.posy = robo->posy;
         per.sucesso = false;
     }
 
-    robo->posx = per.posx;
-    robo->posy = per.posy;
     return per;
 }
 
 Percepcao Labirinto::moverNorte(Robo* robo) {
+    cout << "Acao tomada: moverNorte" << endl;
     int movX=-1, movY=0;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverSul(Robo* robo) {
+    cout << "Acao tomada: moverSul" << endl;
     int movX=1, movY=0;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverLeste(Robo* robo) {
+    cout << "Acao tomada: moverLeste" << endl;
     int movX=0, movY=1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverOeste(Robo* robo) {
+    cout << "Acao tomada: moverOeste" << endl;
     int movX=0, movY=-1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverNordeste(Robo* robo) {
+    cout << "Acao tomada: moverNordeste" << endl;
     int movX=-1, movY=1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverNoroeste(Robo* robo) {
+    cout << "Acao tomada: moverNoroeste" << endl;
     int movX=-1, movY=-1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverSudeste(Robo* robo) {
+    cout << "Acao tomada: moverSudeste" << endl;
     int movX=1, movY=1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverSudoeste(Robo* robo) {
+    cout << "Acao tomada: moverSudoeste" << endl;
     int movX=1, movY=-1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::pegarVitima(Robo* robo) {
-
+cout << "Acao tomada: pegarVitima" << endl;
 }
 
 vector<int>* Labirinto::LerSinaisVitais(Robo* robo) {
+    cout << "Acao tomada: LerSinaisVitais" << endl;
     vector<int>* sinais;
     robo->bateria -= 2;
     robo->tempo -= 2;
