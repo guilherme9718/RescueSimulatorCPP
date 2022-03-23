@@ -6,6 +6,7 @@ RoboVasc::RoboVasc(int maxLin, int maxCol, float bat, float temp, Labirinto *amb
     ultimaPer.posx = 0;
     ultimaPer.posy = 0;
     ultimaPer.sucesso = false;
+    vitCount = 0;
 
     for (int i = 1; i <= 4; i++)
         acoes.push_back(i);
@@ -40,11 +41,13 @@ void RoboVasc::deliberar()
 {
     if (ultimaPer.sucesso)
     {
-        mapa[posx][posy] = ultimaPer.objeto;
+        if(mapa[posx][posy] < 2)
+            mapa[posx][posy] = ultimaPer.objeto;
         if (ultimaPer.objeto > 1)
         {
-            // TODO - ler sinais vitais
-            // auto sinais = ambiente->LerSinaisVitais(this);
+            mapa[posx][posy] = vitCount+2;
+            sinaisVitais.push_back(ambiente->LerSinaisVitais(this, ultimaPer.objeto-2));
+            vitCount++;
         }
     }
     else
@@ -142,6 +145,7 @@ int RoboVasc::explorado(int mov)
         return 0;
         break;
     }
+    return 0;
 }
 
 bool RoboVasc::IndiceSeguroMatriz(int i, int j, int maxI, int maxJ)
@@ -151,4 +155,51 @@ bool RoboVasc::IndiceSeguroMatriz(int i, int j, int maxI, int maxJ)
         return true;
     }
     return false;
+}
+
+void RoboVasc::imprimirMapa()
+{
+    cout << endl
+         << "--- Mapa Robo ---" << endl;
+    for (int i = 0; i < mapa.size(); i++)
+    {
+        string c = "  ";
+        for (int j = 0; j < mapa[i].size(); j++)
+        {
+            switch (mapa[i][j])
+            {
+            case -1:
+                c = "? ";
+                break;
+            case -2:
+                c = "O ";
+                break;
+            case 0:
+                c = "X ";
+                break;
+            case 1:
+                c = ". ";
+                break;
+            default:
+                string aux = "";
+                aux += mapa[i][j]+46;
+                aux += " ";
+                c = aux;
+                break;
+            }
+            cout << c << " ";
+        }
+        cout << endl;
+    }
+    
+    cout << "--- Sinais vitais encontrados ---\n";
+    for(int i = 0; i < sinaisVitais.size(); i++)
+    {
+        cout << "Vitima " << i << ": ";
+        for(int j = 0; j < sinaisVitais[i].size(); j++)
+        {
+            cout << sinaisVitais[i][j] << " ";
+        }
+        cout << endl;
+    }
 }

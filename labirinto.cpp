@@ -19,6 +19,8 @@ Labirinto::Labirinto(int x, int y)
 
     PreencheLabirinto();
     imprimeLabirinto();
+    preencheSinaisVitais();
+    imprimeSinaisVitais();
 }
 
 Labirinto::~Labirinto()
@@ -112,5 +114,49 @@ void Labirinto::PreencheLabirinto()
             aux = m.suffix();
         }
         modo++;
+    }
+}
+
+//Pronto
+//Preenche a matriz de float vitais do labirinto com os valores de sinais vitais.txt
+void Labirinto::preencheSinaisVitais()
+{
+    std::ifstream file;
+    file.open("sinaisvitais.txt", std::ios_base::in);
+
+    if (!file)
+    {
+        cout << "sinaisvitais.txt não encontrado" << endl;
+        exit(1);
+    }
+
+    string line;
+
+    for(int i = 0; i < vitimaCount; i++)
+    {
+        getline(file, line);
+        vector<float> auxV;
+        for(int j = 0; j < 30; j = j+5)
+        {
+            float auxI = 0;
+            auxI += (line[j]-48) + (line[j+2]-48)*0.1 + (line[j+3]-48)*0.01;
+            auxV.push_back(auxI);
+        }
+        vitais.push_back(auxV);
+    }
+}
+
+//Pronto
+//Imprime os sinais vitais
+void Labirinto::imprimeSinaisVitais()
+{
+    cout << "--- Sinais Vitais ---\n";
+    for(int i = 0; i < vitimaCount; i++)
+    {
+        for(int j = 0; j < 6; j++)
+        {
+            cout << vitais[i][j] << " ";
+        }
+        cout << endl;
     }
 }

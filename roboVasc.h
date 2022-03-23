@@ -18,14 +18,24 @@ class RoboVasc: public Robo
     private:
     Labirinto* ambiente;
     list<int> acoes;
+    Percepcao ultimaPer;
+
+    vector<vector<int>> mapa;
+    vector<vector<float>> sinaisVitais;
+    int vitCount;
+
     void decidirMovimento();
     int explorado(int mov);
+
     public:
     
     RoboVasc(int x, int y, float bat, float temp, Labirinto* amb);
     ~RoboVasc();
 
     void imprimirDados();
+    void imprimirMapa();
+
     void deliberar();
     bool IndiceSeguroMatriz(int i, int j, int maxI, int maxJ);
+    
 };

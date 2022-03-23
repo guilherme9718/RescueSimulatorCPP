@@ -7,6 +7,8 @@ class RoboSalv: public Robo
     int carga;
     vector<vector<int>> *labirinto;
 
+    //TODO - colocar ponteiros para mapa e para matriz sinais vitais 
+
     public:
 
     RoboSalv(int carg, float bat, float temp);

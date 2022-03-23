@@ -1,6 +1,5 @@
 #include "labirinto.h"
 
-
 bool Labirinto::validaAcao(Robo* robo, int posx, int posy) {
     if(robo->bateria > 0 && robo->tempo > 0) {
         if(posx >= 0 && posx < labirinto.size()) {
@@ -84,24 +83,28 @@ Percepcao Labirinto::moverSudoeste(Robo* robo) {
     int movX=1, movY=-1;
     return mover(robo, movX, movY);
 }
+/*
 Percepcao Labirinto::pegarVitima(Robo* robo) {
 cout << "Acao tomada: pegarVitima" << endl;
 }
-
-vector<int>* Labirinto::LerSinaisVitais(Robo* robo) {
+*/
+vector<float> Labirinto::LerSinaisVitais(Robo* robo, int i) {
     cout << "Acao tomada: LerSinaisVitais" << endl;
-    vector<int>* sinais;
+    vector<float>* sinais;
     robo->bateria -= 2;
     robo->tempo -= 2;
 
+    return vitais[i];
+    /*
     if(robo->bateria > 0 && robo->tempo > 0) {
         if(robo->posx >= 0 && robo->posx < labirinto.size()) {
             if(robo->posy >=0 && robo->posy < labirinto[robo->posx].size()) {
                 if(labirinto[robo->posx][robo->posy] > 1) {
-                    return sinais;
+                    return vitais[i];
                 }
             }
         }
     }
     return nullptr;
+    */
 }

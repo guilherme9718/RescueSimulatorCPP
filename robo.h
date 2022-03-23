@@ -11,6 +11,7 @@ class Robo
     protected:
     Percepcao ultimaPer;
     vector<vector<int>> mapa;
+    vector<vector<float>> sinaisVitais;
     public:
     
     Robo(float bat, float temp);
