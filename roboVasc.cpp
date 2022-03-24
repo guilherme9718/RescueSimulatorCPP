@@ -150,15 +150,6 @@ int RoboVasc::explorado(int mov)
     return 0;
 }
 
-bool RoboVasc::IndiceSeguroMatriz(int i, int j, int maxI, int maxJ)
-{
-    if (i >= 0 && i < maxI && j >= 0 && j < maxJ)
-    {
-        return true;
-    }
-    return false;
-}
-
 void RoboVasc::imprimirMapa()
 {
     cout << endl
