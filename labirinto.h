@@ -16,6 +16,8 @@ class Labirinto
     int vitimaCount;
     vector<vector<float>> vitais;
 
+    int roboposx;
+    int roboposy;
     public:
 
     Labirinto(int x, int y);

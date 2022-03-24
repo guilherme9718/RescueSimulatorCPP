@@ -30,11 +30,10 @@ Percepcao Labirinto::mover(Robo* robo, int movX, int movY) {
     if(validaAcao(robo, movimentoX, movimentoY)) {
         per.objeto = labirinto[movimentoX][movimentoY];
         per.sucesso = true;
-        labirinto[robo->posx][robo->posy] = 1;
+        //labirinto[robo->posx][robo->posy] = 1;
         //TODO - Pode sobrepor a vítima no labirinto
-        labirinto[movimentoX][movimentoY] = -2;
-        robo->posx = per.posx;
-        robo->posy = per.posy;
+        robo->posx = roboposx = per.posx;
+        robo->posy = roboposy = per.posy;
     }
     else {
         per.sucesso = false;

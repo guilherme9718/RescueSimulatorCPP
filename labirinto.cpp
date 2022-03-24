@@ -8,7 +8,7 @@
 
 Labirinto::Labirinto(int x, int y)
 {
-    vitimaCount = 0;
+    vitimaCount = roboposx = roboposy = 0;
     for (int i = 0; i < x; i++)
     {
         vector<int> aux;
@@ -36,6 +36,11 @@ void Labirinto::imprimeLabirinto()
         string c = "  ";
         for (int j = 0; j < labirinto[i].size(); j++)
         {
+            if(roboposx == i && roboposy == j)
+            {
+                cout << "R  ";
+                continue;
+            }
             switch (labirinto[i][j])
             {
             case -2:
@@ -99,7 +104,7 @@ void Labirinto::PreencheLabirinto()
 
             if (modo == 0)
             {
-                labirinto[x][y] = -2;
+                labirinto[x][y] = 1;
             }
             else if (modo == 1)
             {

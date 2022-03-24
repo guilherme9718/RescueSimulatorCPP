@@ -43,7 +43,7 @@ void RoboVasc::deliberar()
     {
         if(mapa[posx][posy] < 2)
             mapa[posx][posy] = ultimaPer.objeto;
-        if (ultimaPer.objeto > 1)
+        if (ultimaPer.objeto > 1 && mapa[posx][posy] != -1)
         {
             mapa[posx][posy] = vitCount+2;
             sinaisVitais.push_back(ambiente->LerSinaisVitais(this, ultimaPer.objeto-2));
