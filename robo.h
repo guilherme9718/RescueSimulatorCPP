@@ -1,35 +1,11 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <algorithm>
 #include "percepcao.h"
 using namespace std;
 
 class Percepcao;
-
-class Robo
-{
-    protected:
-    Percepcao ultimaPer;
-    vector<vector<int>> mapa;
-    vector<vector<float>> sinaisVitais;
-    public:
-    
-    Robo(float bat, float temp);
-    ~Robo();
-
-    int posx;
-    int posy;
-    float bateria;
-    float tempo;
-
-    bool completou;
-
-    void imprimirMapa(); 
-    bool IndiceSeguroMatriz(int i, int j, int maxI, int maxJ);
-    bool NoValido(int i, int j, vector<vector<int>>* mapa);
-    vector<int> a_estrela(vector<vector<int>>* mapa,  
-    int x, int y, int objetivox, int objetivoy, double(*heuristica)Node);
-};
 
 class Node {
     public:
@@ -56,4 +32,40 @@ class Node {
         }
         return false;
     }
+
+    static bool cmpNode(const Node* a, const Node* b) {
+        return a->custo_total < b->custo_total;
+    }
 };
+
+class Robo
+{
+    protected:
+    Percepcao ultimaPer;
+    vector<vector<int>> mapa;
+    vector<vector<float>> sinaisVitais;
+
+    double heuristica_distancia(const Node &no);
+    void explorar_fronteira(vector<vector<int>> *mapa, vector<Node*>* fronteira, Node* atual);
+    bool NoValido(int i, int j, vector<vector<int>>* mapa);
+    public:
+    
+    Robo(float bat, float temp);
+    ~Robo();
+
+    int posx;
+    int posy;
+    float bateria;
+    float tempo;
+
+    bool completou;
+
+    void imprimirMapa(); 
+    bool IndiceSeguroMatriz(int i, int j, int maxI, int maxJ);
+
+    vector<int> a_estrela(vector<vector<int>>* mapa,  
+    int x, int y, int objetivox, int objetivoy);
+    vector<int> custo_uniforme(vector<vector<int>>* mapa,  
+    int x, int y, int objetivox, int objetivoy);
+    };
+

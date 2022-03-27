@@ -67,7 +67,7 @@ void RoboVasc::deliberar()
 
 void RoboVasc::decidirMovimento()
 {
-    int acaoEscolhida = acoes.front();
+    int acaoEscolhida = -1;
     list<int>::iterator it;
     for (it = acoes.begin(); it != acoes.end(); ++it)
     {
@@ -75,6 +75,9 @@ void RoboVasc::decidirMovimento()
             acaoEscolhida = *it;
             break;
         }
+    }
+    if(acaoEscolhida == -1) {
+        custo_uniforme(&mapa, this->posx, this->posy, 0, 0);
     }
     switch (acaoEscolhida)
     {

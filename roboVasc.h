@@ -36,6 +36,6 @@ class RoboVasc: public Robo
     void imprimirMapa();
 
     void deliberar();
-    bool IndiceSeguroMatriz(int i, int j, int maxI, int maxJ);
+    //bool IndiceSeguroMatriz(int i, int j, int maxI, int maxJ);
     
 };
