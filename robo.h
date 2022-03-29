@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include "percepcao.h"
+#include "a_estrela.h"
 using namespace std;
 
 class Percepcao;
@@ -9,9 +10,6 @@ class Percepcao;
 class Robo
 {
     protected:
-    Percepcao ultimaPer;
-    vector<vector<int>> mapa;
-    vector<vector<float>> sinaisVitais;
     public:
     
     Robo(float bat, float temp);
@@ -24,5 +22,4 @@ class Robo
 
     bool completou;
 
-    void imprimirMapa();
 };
