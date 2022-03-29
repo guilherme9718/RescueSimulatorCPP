@@ -28,6 +28,8 @@ class Labirinto
     void preencheSinaisVitais();
     void imprimeSinaisVitais();
 
+    vector<vector<int>> getLabirinto() {return labirinto;}
+
     //Ações
 
     Percepcao moverNorte(Robo* robo);

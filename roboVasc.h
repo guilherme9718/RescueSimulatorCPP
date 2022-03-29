@@ -21,7 +21,7 @@ class RoboVasc: public Robo
     Percepcao ultimaPer;
 
     vector<vector<int>> mapa;
-    vector<vector<float>> sinaisVitais;
+    vector<vector<float>> vitimas;
     int vitCount;
 
     void decidirMovimento();

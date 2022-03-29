@@ -48,7 +48,9 @@ void RoboVasc::deliberar()
             bateria -= 2;
             tempo -= 2;
             mapa[posx][posy] = vitCount+2;
-            sinaisVitais.push_back(ambiente->LerSinaisVitais(this, ultimaPer.objeto-2));
+            vitimas.push_back(ambiente->LerSinaisVitais(this, ultimaPer.objeto-2));
+            vitimas[vitCount].push_back(posx);
+            vitimas[vitCount].push_back(posy);
             vitCount++;
         }
     }
@@ -57,7 +59,9 @@ void RoboVasc::deliberar()
         if ((ultimaPer.posx >= 0 && ultimaPer.posx < mapa.size()) && 
         (ultimaPer.posy >= 0 && ultimaPer.posy < mapa[ultimaPer.posx].size()))
             if (mapa[ultimaPer.posx][ultimaPer.posy] == -1)
+            {
                 mapa[ultimaPer.posx][ultimaPer.posy] = 0;
+            }
         int aux = acoes.front();
         acoes.remove(acoes.front());
         acoes.push_back(aux);
@@ -195,12 +199,12 @@ void RoboVasc::imprimirMapa()
     }
     
     cout << "--- Sinais vitais encontrados ---\n";
-    for(int i = 0; i < sinaisVitais.size(); i++)
+    for(int i = 0; i < vitimas.size(); i++)
     {
         cout << "Vitima " << i << ": ";
-        for(int j = 0; j < sinaisVitais[i].size(); j++)
+        for(int j = 0; j < vitimas[i].size(); j++)
         {
-            cout << sinaisVitais[i][j] << " ";
+            cout << vitimas[i][j] << " ";
         }
         cout << endl;
     }
