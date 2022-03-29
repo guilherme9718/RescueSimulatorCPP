@@ -7,6 +7,9 @@ RoboVasc::RoboVasc(int maxLin, int maxCol, float bat, float temp, Labirinto *amb
     ultimaPer.posy = 0;
     ultimaPer.sucesso = false;
     vitCount = 0;
+    estado = NORMAL;
+    i_explorado = 0;
+    i_voltando = 0;
 
     for (int i = 1; i <= 4; i++)
         acoes.push_back(i);
@@ -39,16 +42,15 @@ void RoboVasc::imprimirDados()
 
 void RoboVasc::deliberar()
 {
+    
     if (ultimaPer.sucesso)
     {
-        if(mapa[posx][posy] < 2)
+        if (mapa[posx][posy] < 2)
             mapa[posx][posy] = ultimaPer.objeto;
         if (ultimaPer.objeto > 1 && mapa[posx][posy] != -1)
         {
-            bateria -= 2;
-            tempo -= 2;
-            mapa[posx][posy] = vitCount+2;
-            vitimas.push_back(ambiente->LerSinaisVitais(this, ultimaPer.objeto-2));
+            mapa[posx][posy] = vitCount + 2;
+            vitimas.push_back(ambiente->LerSinaisVitais(this, ultimaPer.objeto - 2));
             vitimas[vitCount].push_back(posx);
             vitimas[vitCount].push_back(posy);
             vitCount++;
@@ -56,8 +58,8 @@ void RoboVasc::deliberar()
     }
     else
     {
-        if ((ultimaPer.posx >= 0 && ultimaPer.posx < mapa.size()) && 
-        (ultimaPer.posy >= 0 && ultimaPer.posy < mapa[ultimaPer.posx].size()))
+        if ((ultimaPer.posx >= 0 && ultimaPer.posx < mapa.size()) &&
+            (ultimaPer.posy >= 0 && ultimaPer.posy < mapa[ultimaPer.posx].size()))
             if (mapa[ultimaPer.posx][ultimaPer.posy] == -1)
             {
                 mapa[ultimaPer.posx][ultimaPer.posy] = 0;
@@ -66,84 +68,113 @@ void RoboVasc::deliberar()
         acoes.remove(acoes.front());
         acoes.push_back(aux);
     }
-    decidirMovimento();
+    switch(estado) {
+        case NORMAL:
+            decidirMovimentoNormal();
+            break;
+        case EXPLORANDO:
+            decidirMovimentoExplorando();
+            break;
+        case VOLTANDO:
+            decidirMovimentoVoltando();
+            break;
+    }
 }
 
-void RoboVasc::decidirMovimento()
+void RoboVasc::decidirMovimentoNormal()
 {
-    int acaoEscolhida = acoes.front();
+    int acaoEscolhida = 0;
     list<int>::iterator it;
+    Pos aux(0,0);
     for (it = acoes.begin(); it != acoes.end(); ++it)
     {
-        if (explorado(*it) == -1) {
+        if (explorado(*it, aux) == -1)
+        {
             acaoEscolhida = *it;
             break;
         }
     }
-    switch (acaoEscolhida)
+
+    if (acaoEscolhida == 0)
     {
-    case 1:
-        ultimaPer = ambiente->moverNorte(this);
-        break;
-    case 2:
-        ultimaPer = ambiente->moverSul(this);
-        break;
-    case 3:
-        ultimaPer = ambiente->moverLeste(this);
-        break;
-    case 4:
-        ultimaPer = ambiente->moverOeste(this);
-        break;
-    case 5:
-        ultimaPer = ambiente->moverNordeste(this);
-        break;
-    case 6:
-        ultimaPer = ambiente->moverNoroeste(this);
-        break;
-    case 7:
-        ultimaPer = ambiente->moverSudeste(this);
-        break;
-    case 8:
-        ultimaPer = ambiente->moverSudoeste(this);
-        break;
-    default:
-        break;
+        estado = EXPLORANDO;
+        Pos aux = procurarObjetivoMaisProximo(-1, posx, posy, &mapa);
+        if(aux.first == -1 || aux.second == -1) {
+            estado = VOLTANDO;
+            caminho = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
+            i_voltando = 0;
+            decidirMovimentoVoltando();
+            return;
+        }
+        caminho = a_estrela(Pos(posx, posy), aux, mapa);
+        i_explorado = 0;
+        decidirMovimentoExplorando();
+        return;
     }
+    verificarBateria(acaoEscolhida);
+    Mover(acaoEscolhida);
 }
 
-int RoboVasc::explorado(int mov)
+void RoboVasc::decidirMovimentoExplorando() {
+    if(i_explorado >= caminho.second.size()) {
+        estado = NORMAL;
+        decidirMovimentoNormal();
+        return;
+    }
+    Mover(caminho.second[i_explorado]);
+    i_explorado++;
+}
+
+void RoboVasc::decidirMovimentoVoltando() {
+    if(i_voltando >= caminho.second.size()) {
+        completou = true;
+        return;
+    }
+    Mover(caminho.second[i_voltando]);
+    i_voltando++;
+}
+
+int RoboVasc::explorado(int mov, Pos &pos)
 {
     switch (mov)
     {
     case 1:
+        pos = Pos(-1, 0);
         if (IndiceSeguroMatriz(posx - 1, posy, mapa.size(), mapa[0].size()))
             return mapa[posx - 1][posy];
         break;
     case 2:
+        pos = Pos(1, 0);
         if (IndiceSeguroMatriz(posx + 1, posy, mapa.size(), mapa[0].size()))
             return mapa[posx + 1][posy];
         break;
     case 3:
+        pos = Pos(0, 1);
         if (IndiceSeguroMatriz(posx, posy + 1, mapa.size(), mapa[0].size()))
             return mapa[posx][posy + 1];
         break;
     case 4:
+        pos = Pos(0, -1);
         if (IndiceSeguroMatriz(posx, posy - 1, mapa.size(), mapa[0].size()))
             return mapa[posx][posy - 1];
         break;
     case 5:
+        pos = Pos(-1, 1);
         if (IndiceSeguroMatriz(posx - 1, posy + 1, mapa.size(), mapa[0].size()))
             return mapa[posx - 1][posy + 1];
         break;
     case 6:
+        pos = Pos(-1, -1);
         if (IndiceSeguroMatriz(posx - 1, posy - 1, mapa.size(), mapa[0].size()))
             return mapa[posx - 1][posy - 1];
         break;
     case 7:
+        pos = Pos(1, 1);
         if (IndiceSeguroMatriz(posx + 1, posy + 1, mapa.size(), mapa[0].size()))
             return mapa[posx + 1][posy + 1];
         break;
     case 8:
+        pos = Pos(1, -1);
         if (IndiceSeguroMatriz(posx + 1, posy - 1, mapa.size(), mapa[0].size()))
             return mapa[posx + 1][posy - 1];
         break;
@@ -161,6 +192,32 @@ bool RoboVasc::IndiceSeguroMatriz(int i, int j, int maxI, int maxJ)
         return true;
     }
     return false;
+}
+
+Caminho RoboVasc::consegueVoltarBateria(Pos objetivo, bool &consegue)
+{
+    int custoObj = 1;
+    consegue = true;
+    Caminho caminho = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
+    if ((objetivo.first - posx != 0) && (objetivo.second - posy != 0))
+        custoObj = 1.5;
+    if (caminho.first > bateria - custoObj)
+        consegue = false;
+    return caminho;
+}
+
+void RoboVasc::verificarBateria(int acaoEscolhida) {
+    Pos objetivo(0,0);
+    explorado(acaoEscolhida, objetivo);
+    bool consegue = true;
+    Caminho caminho_volta = consegueVoltarBateria(objetivo, consegue);
+    if(!consegue) {
+        estado = VOLTANDO;
+        caminho = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
+        i_voltando = 0;
+        decidirMovimentoVoltando();
+        return;
+    }
 }
 
 void RoboVasc::imprimirMapa()
@@ -188,7 +245,7 @@ void RoboVasc::imprimirMapa()
                 break;
             default:
                 string aux = "";
-                aux += mapa[i][j]+46;
+                aux += mapa[i][j] + 46;
                 aux += " ";
                 c = aux;
                 break;
@@ -197,15 +254,47 @@ void RoboVasc::imprimirMapa()
         }
         cout << endl;
     }
-    
+
     cout << "--- Sinais vitais encontrados ---\n";
-    for(int i = 0; i < vitimas.size(); i++)
+    for (int i = 0; i < vitimas.size(); i++)
     {
         cout << "Vitima " << i << ": ";
-        for(int j = 0; j < vitimas[i].size(); j++)
+        for (int j = 0; j < vitimas[i].size(); j++)
         {
             cout << vitimas[i][j] << " ";
         }
         cout << endl;
+    }
+}
+
+void RoboVasc::Mover(int acao) {
+    switch (acao)
+    {
+    case 1:
+        ultimaPer = ambiente->moverNorte(this);
+        break;
+    case 2:
+        ultimaPer = ambiente->moverSul(this);
+        break;
+    case 3:
+        ultimaPer = ambiente->moverLeste(this);
+        break;
+    case 4:
+        ultimaPer = ambiente->moverOeste(this);
+        break;
+    case 5:
+        ultimaPer = ambiente->moverNordeste(this);
+        break;
+    case 6:
+        ultimaPer = ambiente->moverNoroeste(this);
+        break;
+    case 7:
+        ultimaPer = ambiente->moverSudeste(this);
+        break;
+    case 8:
+        ultimaPer = ambiente->moverSudoeste(this);
+        break;
+    default:
+        break;
     }
 }

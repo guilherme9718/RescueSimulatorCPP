@@ -168,12 +168,51 @@ Caminho a_estrela(Pos inicial, Pos destino, vector<vector<int>> labirinto)
     falhou.first = -1;
     return falhou;
 }
-/*
-for(int i = 0; i < max_lin; i++)
-    {
-        for(int j = 0; j < max_col; j++)
-        {
-            
+pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int posyInicial, vector<vector<int>> *mapa) {
+    queue<pair<int, int>> fronteira;
+
+    //Aloca e zera vetor para programação dinâmica
+    vector<vector<char>> explorado;
+    explorado.reserve(mapa->size());
+    for(int i=0; i < mapa->size(); i++) {
+        vector<char>* aux = new vector<char>;
+        aux->reserve(mapa->at(0).size());
+        for(int j = 0; j < mapa->at(0).size(); j++) {
+            aux->push_back(0);
         }
+        explorado.push_back(*aux);
     }
-*/
+
+    int posx = posxInicial, posy = posyInicial;
+    
+    do {
+        //Explora as redondezas
+        for(int i=-1; i < 2; i++) {
+            for(int j=-1; j < 2; j++) {
+                Pos parAux;
+                parAux.first = posx+i;
+                parAux.second = posy+j;
+                if(acessivel(parAux, *mapa))
+                    if(explorado[parAux.first][parAux.second] == 0)
+                        fronteira.push(parAux);
+            }
+        }
+
+        Pos exp = fronteira.front();
+        fronteira.pop();
+        explorado[exp.first][exp.second] = 1;
+        if(mapa->at(exp.first).at(exp.second) == codObjetivo) {
+            for(int j = 0; j < mapa->at(0).size(); j++) {
+                explorado[j].clear();
+            }
+            explorado.clear();
+            return exp;
+        }
+    } while(fronteira.size() > 0);
+
+    //nao achou
+    Pos aux;
+    aux.first = -1;
+    aux.second = -1;
+    return aux;
+}

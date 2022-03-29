@@ -67,6 +67,7 @@ int main()
     while(vasc->completou == false) {
         system("clear");
         cout << "Tempo restante: " << vasc->tempo << endl;
+        cout << "Estado Robo: " << vasc->estado << endl;
         vasc->deliberar();
         lab->imprimeLabirinto();
         vasc->imprimirMapa();

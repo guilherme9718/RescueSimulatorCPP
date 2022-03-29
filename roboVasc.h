@@ -3,6 +3,13 @@
 #include <list>
 class Labirinto;
 
+enum Estado
+{
+        NORMAL=0,
+        EXPLORANDO=1,
+        VOLTANDO=2
+};
+
 class RoboVasc: public Robo
 {
     //Lista de ações
@@ -24,8 +31,12 @@ class RoboVasc: public Robo
     vector<vector<float>> vitimas;
     int vitCount;
 
-    void decidirMovimento();
-    int explorado(int mov);
+    int i_explorado;
+    int i_voltando;
+    Caminho caminho;
+
+    
+    int explorado(int mov, Pos &pos);
 
     public:
     
@@ -37,5 +48,14 @@ class RoboVasc: public Robo
 
     void deliberar();
     bool IndiceSeguroMatriz(int i, int j, int maxI, int maxJ);
-    
+    Caminho consegueVoltarBateria(Pos objetivo, bool &consegue);
+    void verificarBateria(int acaoEscolhida);
+    void Mover(int acao);
+
+    void decidirMovimentoNormal();
+    void decidirMovimentoExplorando();
+    void decidirMovimentoVoltando();
+
+    Estado estado;
 };
+

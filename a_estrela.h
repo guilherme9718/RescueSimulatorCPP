@@ -46,3 +46,5 @@ Caminho interpreta_caminho(vector<vector<Dados>> elementos);
 
 //Faz o a* e retorna uma matriz contendo os dados dos elementos do labirinto
 Caminho a_estrela(Pos inicial, Pos destino, vector<vector<int>> labirinto);
+
+pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int posyInicial, vector<vector<int>> *mapa);
