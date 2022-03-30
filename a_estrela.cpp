@@ -45,7 +45,7 @@ Caminho interpreta_caminho(vector<vector<Dados>> elementos, Pos inicial, Pos des
         int auxj = elementos[i][j].pai.second;
         i = auxi;
         j = auxj;
-    } while(i != inicial.first && j != inicial.second);
+    } while(!(i == inicial.first && j == inicial.second));
 
     vector<int> rev;
     for(int i = acoes.size()-1; i >=0; i--)
@@ -172,17 +172,17 @@ pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int
     queue<pair<int, int>> fronteira;
 
     //Aloca e zera vetor para programação dinâmica
-    vector<vector<char>> explorado;
+    vector<vector<bool>> explorado;
     explorado.reserve(mapa->size());
     for(int i=0; i < mapa->size(); i++) {
-        vector<char>* aux = new vector<char>;
+        vector<bool>* aux = new vector<bool>;
         aux->reserve(mapa->at(0).size());
         for(int j = 0; j < mapa->at(0).size(); j++) {
-            aux->push_back(0);
+            aux->push_back(false);
         }
         explorado.push_back(*aux);
     }
-
+    explorado[posxInicial][posyInicial] = true;
     int posx = posxInicial, posy = posyInicial;
     
     do {
@@ -193,14 +193,14 @@ pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int
                 parAux.first = posx+i;
                 parAux.second = posy+j;
                 if(acessivel(parAux, *mapa))
-                    if(explorado[parAux.first][parAux.second] == 0)
+                    if(explorado[parAux.first][parAux.second] == false)
                         fronteira.push(parAux);
             }
         }
 
         Pos exp = fronteira.front();
         fronteira.pop();
-        explorado[exp.first][exp.second] = 1;
+        explorado[exp.first][exp.second] = true;
         if(mapa->at(exp.first).at(exp.second) == codObjetivo) {
             for(int j = 0; j < mapa->at(0).size(); j++) {
                 explorado[j].clear();

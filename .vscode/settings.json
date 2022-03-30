@@ -1,0 +1,15 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/guilherme/Área de Trabalho/Estudo Faculdade/Disciplinas/Sistemas inteligentes/RescueSimulatorCPP",
+            "binaryPath": "/home/guilherme/Área de Trabalho/Estudo Faculdade/Disciplinas/Sistemas inteligentes/RescueSimulatorCPP/rescue.out",
+            "binaryArgs": []
+        }
+    ],
+    "files.associations": {
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "*.tcc": "cpp"
+    }
+}

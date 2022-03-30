@@ -1,0 +1,5 @@
+make all --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/guilherme/Área de Trabalho/Estudo Faculdade/Disciplinas/Sistemas inteligentes/RescueSimulatorCPP'
+g++ -g main.cpp robo.cpp roboVasc.cpp roboSalv.cpp labirinto.cpp percepcao.h acoes.cpp -o rescue.out
+make: Leaving directory '/home/guilherme/Área de Trabalho/Estudo Faculdade/Disciplinas/Sistemas inteligentes/RescueSimulatorCPP'
+ 

@@ -121,6 +121,7 @@ void RoboVasc::decidirMovimentoExplorando() {
         decidirMovimentoNormal();
         return;
     }
+    verificarBateria(caminho.second[i_explorado]);
     Mover(caminho.second[i_explorado]);
     i_explorado++;
 }
@@ -196,14 +197,18 @@ bool RoboVasc::IndiceSeguroMatriz(int i, int j, int maxI, int maxJ)
 
 Caminho RoboVasc::consegueVoltarBateria(Pos objetivo, bool &consegue)
 {
+    Caminho cam;
+    cam.first = -1;
     int custoObj = 1;
     consegue = true;
-    Caminho caminho = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
+    if(0 == posx && 0 == posy)
+        return cam;
+    cam = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
     if ((objetivo.first - posx != 0) && (objetivo.second - posy != 0))
         custoObj = 1.5;
-    if (caminho.first > bateria - custoObj)
+    if (cam.first > bateria - custoObj)
         consegue = false;
-    return caminho;
+    return cam;
 }
 
 void RoboVasc::verificarBateria(int acaoEscolhida) {
@@ -211,7 +216,7 @@ void RoboVasc::verificarBateria(int acaoEscolhida) {
     explorado(acaoEscolhida, objetivo);
     bool consegue = true;
     Caminho caminho_volta = consegueVoltarBateria(objetivo, consegue);
-    if(!consegue) {
+    if(!consegue && caminho_volta.first != -1) {
         estado = VOLTANDO;
         caminho = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
         i_voltando = 0;
