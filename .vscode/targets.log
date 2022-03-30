@@ -1,212 +1,264 @@
-make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
-# GNU Make 4.3
-# Built for Windows32
-# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+ 
+# Built for x86_64-pc-linux-gnu
+ 
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+ 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+ 
 # This is free software: you are free to change and redistribute it.
+ 
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Wed Mar 30 08:16:26 2022
+ 
+# Make data base, printed on Wed Mar 30 19:23:16 2022
+ 
 
 # Variables
+ 
 
-# environment
-FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
-# environment
-SYSTEMDRIVE = C:
-# environment
-LC_ALL = C
-# environment
-USERPROFILE = C:\Users\guilherme.oliveira
-# environment
-LOCALAPPDATA = C:\Users\guilherme.oliveira\AppData\Local
-# environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-02ee46ec-d7cd-4c75-b71e-f1fc16917ab1-sock
-# environment
-VSCODE_CWD = C:\Users\guilherme.oliveira\AppData\Local\Programs\Microsoft VS Code
-# environment
-CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
-# environment
-SYSTEMROOT = C:\windows
-# environment
-PROCESSOR_LEVEL = 6
-# environment
-PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\windows\system32\WindowsPowerShell\v1.0\Modules
-# default
-MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
-# environment
-USERDNSDOMAIN = MPS.INTERNO
+ 
 # automatic
-@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
-# environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_10088_ACRFOAAUGBWINBCM
-# environment
-FPS_BROWSER_USER_PROFILE_STRING = Default
-# environment
-VSCODE_HANDLES_UNCAUGHT_ERRORS = true
-# default
-.VARIABLES := 
+ 
+<D = $(patsubst %/,%,$(dir $<))
+ 
 # automatic
-%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
-# automatic
-^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+ 
+?F = $(notdir $?)
+ 
 # environment
-VSCODE_LOG_STACK = false
-# automatic
-%F = $(notdir $%)
-# environment
-VSCODE_CODE_CACHE_PATH = C:\Users\guilherme.oliveira\AppData\Roaming\Code\CachedData\c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1
-# environment
-LANG = C
+ 
+DESKTOP_SESSION = cinnamon
+ 
 # default
-.LOADED := 
-# environment
-TMP = C:\Users\GUILHE~1.OLI\AppData\Local\Temp
-# default
-.INCLUDE_DIRS = .
-# environment
-PROCESSOR_ARCHITEW6432 = AMD64
-# makefile
-MAKEFLAGS = pqrR
-# environment
-ONEDRIVE = C:\Users\guilherme.oliveira\OneDrive
-# makefile
-CURDIR := c:/Users/guilherme.oliveira/Desktop/Projetos/RescueSimulatorCPP
-# environment
-VSCODE_PIPE_LOGGING = true
-# environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# automatic
-*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
-# environment
-PROGRAMFILES = C:\Program Files (x86)
-# environment
-MFLAGS = -pqrR
-# default
+ 
 .SHELLFLAGS := -c
+ 
 # environment
-COMMONPROGRAMW6432 = C:\Program Files\Common Files
+ 
+XDG_SESSION_CLASS = user
+ 
+# environment
+ 
+XDG_SESSION_TYPE = x11
+ 
+# environment
+ 
+VSCODE_LOG_NATIVE = false
+ 
+# environment
+ 
+GTK3_MODULES = xapp-gtk3-module
+ 
 # automatic
-+D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+ 
+?D = $(patsubst %/,%,$(dir $?))
+ 
+# automatic
+ 
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /home/guilherme/.Xauthority
+# environment
+GDMSESSION = cinnamon
+# default
+MAKE_VERSION := 4.2.1
+# makefile
+CURDIR := /home/guilherme/Área de Trabalho/Estudo Faculdade/Disciplinas/Sistemas inteligentes/RescueSimulatorCPP
+# makefile
+SHELL = /bin/sh
+# environment
+GDM_LANG = pt_BR
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{"*":"pt-br"},"_languagePackId":"5cd49c849ab40d8b4b4b1774f41ea8de.pt-br","_translationsConfigFile":"/home/guilherme/.config/Code/clp/5cd49c849ab40d8b4b4b1774f41ea8de.pt-br/tcf.json","_cacheRoot":"/home/guilherme/.config/Code/clp/5cd49c849ab40d8b4b4b1774f41ea8de.pt-br","_resolvedLanguagePackCoreLocation":"/home/guilherme/.config/Code/clp/5cd49c849ab40d8b4b4b1774f41ea8de.pt-br/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1","_corruptedFile":"/home/guilherme/.config/Code/clp/5cd49c849ab40d8b4b4b1774f41ea8de.pt-br/corrupted.info","_languagePackSupport":true}
+# environment
+_ = /usr/share/code/code
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-cinnamon:/etc/xdg
+# environment
+GTK_OVERLAY_SCROLLING = 1
 # makefile (from 'Makefile', line 1)
-MAKEFILE_LIST := Makefile
+MAKEFILE_LIST :=  Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_VERBOSE_LOGGING = true
-# environment
-VSCODE_PID = 10088
-# automatic
-?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
-# automatic
-*F = $(notdir $*)
-# automatic
-<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
-# environment
-VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# default
-MAKE_HOST := Windows32
-# environment
-PROGRAMDATA = C:\ProgramData
-# default
-SHELL := sh.exe
-# environment
-HOMEPATH = \Users\guilherme.oliveira
-# default
-MAKECMDGOALS := all
-# environment
-DRIVERDATA = C:\Windows\System32\Drivers\DriverData
-# environment
-COMSPEC = C:\windows\system32\cmd.exe
-# environment
-WINDIR = C:\windows
-# environment
-MAKELEVEL := 0
-# default
-MAKE = $(MAKE_COMMAND)
-# environment
-PATH = C:\Python310\Scripts\;C:\Python310\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\PuTTY\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Users\guilherme.oliveira\AppData\Local\Microsoft\WindowsApps;C:\Users\guilherme.oliveira\.dotnet\tools;C:\Program Files\Azure Data Studio\bin;C:\Users\guilherme.oliveira\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\PostgreSQL\14\bin;C:\Users\guilherme.oliveira\AppData\Local\gitkraken\bin;C:\Users\guilherme.oliveira\AppData\Roaming\npm;C:\Users\guilherme.oliveira\.dotnet\tools
-# environment
-COMPUTERNAME = GUILHERMEOLIVEI
-# default
-MAKEFILES := 
-# automatic
-^F = $(notdir $^)
-# environment
-PROMPT = $P$G
-# environment
-CHOCOLATEYLASTPATHUPDATE = 132791220506352650
-# environment
-LOGONSERVER = \\VERANEIO
-# environment
-VSCODE_LOG_NATIVE = false
-# environment
-USERNAME = guilherme.oliveira
-# environment
-COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
-# automatic
-?F = $(notdir $?)
-# environment
-PROGRAMW6432 = C:\Program Files
-# environment
-PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
-# automatic
-+F = $(notdir $+)
-# environment
-ORIGINAL_XDG_CURRENT_DESKTOP = undefined
-# environment
-USERDOMAIN = MPS
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
-OS = Windows_NT
-# makefile
-.DEFAULT_GOAL := all
+MANDATORY_PATH = /usr/share/gconf/cinnamon.mandatory.path
+# environment
+XDG_DATA_DIRS = /usr/share/cinnamon:/usr/share/gnome:/home/guilherme/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+VSCODE_CWD = /home/guilherme
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
 # default
-MAKE_VERSION := 4.3
+MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PROGRAMFILES(X86) = C:\Program Files (x86)
+PATH = /home/guilherme/.local/bin:/home/guilherme/anaconda3/bin:/home/guilherme/anaconda3/condabin:/home/guilherme/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/guilherme/.dotnet/tools:/home/guilherme/.dotnet/tools
 # environment
-USERDOMAIN_ROAMINGPROFILE = MPS
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-NUMBER_OF_PROCESSORS = 6
+SESSION_MANAGER = local/Robson-Aspire-A515-51:@/tmp/.ICE-unix/1346,unix/Robson-Aspire-A515-51:/tmp/.ICE-unix/1346
 # environment
-PUBLIC = C:\Users\Public
+XDG_RUNTIME_DIR = /run/user/1000
 # environment
-APPDATA = C:\Users\guilherme.oliveira\AppData\Roaming
+CONDA_PREFIX = /home/guilherme/anaconda3
 # environment
-HOMEDRIVE = C:
+VSCODE_LOG_STACK = false
 # environment
-PROCESSOR_ARCHITECTURE = x86
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/guilherme
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = cinnamon
+# environment
+SSH_AUTH_SOCK = /tmp/ssh-kDmwecnDFrbP/agent.1346
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 9828
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+CONDA_EXE = /home/guilherme/anaconda3/bin/conda
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/guilherme/Área de Trabalho/Estudo Faculdade/Disciplinas/Sistemas inteligentes/RescueSimulatorCPP
+# environment
+QT_QPA_PLATFORMTHEME = qt5ct
+# default
+.LOADED := 
+# environment
+XDG_SEAT = seat0
+# environment
+SSH_AGENT_PID = 1416
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = X-Cinnamon
+# environment
+GTK_MODULES = gail:atk-bridge
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+HOME = /home/guilherme
 # environment
-ELECTRON_RUN_AS_NODE = 1
+LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
-TEMP = C:\Users\GUILHE~1.OLI\AppData\Local\Temp
+VSCODE_CODE_CACHE_PATH = /home/guilherme/.config/Code/CachedData/c722ca6c7eed3d7987c0d5c3df5c45f6b15e77d1
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\ddf89313d08ef0f7f4675bacac242a89-1.65.2-main-sock
+LOGNAME = guilherme
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+CONDA_PROMPT_MODIFIER = (base) 
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XDG_VTNR = 7
+# environment
+MAKELEVEL := 0
+# environment
+CONDA_DEFAULT_ENV = base
 # default
-.RECIPEPREFIX := 
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 0
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-c0009216-1af5-4e9c-9c0c-61b61f161a4f.sock
+# environment
+XDG_SESSION_ID = c2
+# environment
+USER = guilherme
+# makefile
+.DEFAULT_GOAL := all
+# environment
+XDG_CURRENT_DESKTOP = X-Cinnamon
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+CONDA_SHLVL = 1
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+LANGUAGE = pt_BR:pt:en
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-e0e8f5bd-1.65.2-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# automatic
++F = $(notdir $+)
+# environment
+CINNAMON_VERSION = 5.0.7
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+DEFAULTS_PATH = /usr/share/gconf/cinnamon.default.path
+# default
+MAKEFILES := 
 # automatic
 <F = $(notdir $<)
+# environment
+LC_ALL = C
+# environment
+CONDA_PYTHON_EXE = /home/guilherme/anaconda3/bin/python
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# automatic
+^F = $(notdir $^)
 # default
 SUFFIXES := 
 # environment
-ALLUSERSPROFILE = C:\ProgramData
+_CE_M = 
 # environment
-SESSIONNAME = Console
+CHROME_DESKTOP = code-url-handler.desktop
 # default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # environment
-PROCESSOR_REVISION = 9e0a
+GJS_DEBUG_OUTPUT = stderr
+# default
+.RECIPEPREFIX := 
 # environment
-PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
+LANG = C
+# environment
+VSCODE_PID = 9828
+# environment
+_CE_CONDA = 
 # variable set hash-table stats:
-# Load=97/1024=9%, Rehash=0, Collisions=9/127=7%
+# Load=109/1024=11%, Rehash=0, Collisions=8/137=6%
 
 # Pattern-specific Variable Values
 
@@ -214,28 +266,15 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 158 Stepping 10, GenuineIntel
 
 # Directories
 
-# . (key c:/Users/guilherme.oliveira/Desktop/Projetos/RescueSimulatorCPP, mtime 1648638940): 26 files, no impossibilities.
+# . (device 66306, inode 14300845): 25 files, no impossibilities.
 
-# 26 files, no impossibilities in 1 directories.
+# 25 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
 
 # Files
-
-# Not a target:
-Makefile:
-#  Implicit rule search has been done.
-#  Last modified 2022-03-30 08:15:26
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-.DEFAULT:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 all:
 #  Command line target.
@@ -247,26 +286,39 @@ all:
 # automatic
 # @ := all
 # automatic
-# * := 
+# % := 
 # automatic
-# < := 
+# * := 
 # automatic
 # + := 
 # automatic
-# % := 
+# | := 
+# automatic
+# < := 
 # automatic
 # ^ := 
 # automatic
 # ? := 
-# automatic
-# | := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/11=9%
 #  recipe to execute (from 'Makefile', line 2):
-	g++ -g main.cpp robo.cpp roboVasc.cpp roboSalv.cpp labirinto.cpp percepcao.h acoes.cpp a_estrela.cpp -o rescue.exe
+	g++ -g main.cpp robo.cpp roboVasc.cpp roboSalv.cpp labirinto.cpp percepcao.h acoes.cpp a_estrela.cpp -o rescue.out
 
 # Not a target:
 .SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-03-30 19:21:38.152063396
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -277,15 +329,15 @@ all:
 
 # No 'vpath' search paths.
 
-# No general ('VPATH' variable) sea 
-rch path.
+# No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 29 / storage = 317 B / avg = 10 B
-# current buf: size = 8174 B / used = 317 B / count = 29 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 30 / storage = 338 B / avg = 11 B
+# current buf: size = 8162 B / used = 338 B / count = 30 / avg = 11 B
 
-# strcache performance: lookups = 36 / hit rate = 19%
+# strcache performance: lookups = 37 / hit rate = 18%
 # hash-table stats:
-# Load=29/8192=0%, Rehash=0, Collisions=0/36=0%
-# Finished Make data base on Wed Mar 30 08:16:26 2022
+# Load=30/8192=0%, Rehash=0, Collisions=1/37=3%
+ 
+# Finished Make data base on Wed Mar 30 19:23:16 2022
 
  

@@ -215,7 +215,7 @@ Caminho RoboVasc::consegueVoltarBateria(Pos objetivo, bool &consegue)
     cam = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
     if ((objetivo.first - posx != 0) && (objetivo.second - posy != 0))
         custoObj = 1.5;
-    if (cam.first > bateria - custoObj)
+    if (cam.first > bateria - custoObj || cam.first > tempo - custoObj)
         consegue = false;
     return cam;
 }

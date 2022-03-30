@@ -31,9 +31,11 @@ void constroi_dados(vector<vector<Dados>> &d, Pos max)
     d_aux.acao = 0;
 
     vector<Dados> aux;
+    aux.reserve(max.second);
     for(int j = 0; j < max.second; j++)
         aux.push_back(d_aux);
 
+    d.reserve(max.first);
     for(int i = 0; i < max.first; i++)
         d.push_back(aux);
 }
@@ -237,7 +239,7 @@ pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int
             for(int j = 0; j < mapa->at(0).size(); j++) {
                 explorado[j].clear();
             }
-            explorado.clear();
+            //explorado.clear();
             cout << "par (" << exp.first << "," << exp.second << ") escolhido filho de (" << posx << "," << posy << ")" << endl;
             return exp;
         }

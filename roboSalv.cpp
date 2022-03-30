@@ -75,7 +75,7 @@ void RoboSalv::executar_plano()
     using namespace std::this_thread;
     using namespace std::chrono;
 
-    sleep_for(milliseconds(10000));
+    sleep_for(milliseconds(3000));
     system("clear");
     Pos robo_pos = make_pair(0,0);
     float t = tempo;
@@ -183,7 +183,7 @@ void RoboSalv::executar_plano()
                 break;
             }
             imprime_labirinto(robo_pos);
-            sleep_for(milliseconds(2000));
+            sleep_for(milliseconds(800));
             system("clear");
         }
     }

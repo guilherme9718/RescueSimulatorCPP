@@ -72,7 +72,7 @@ int main()
         vasc->deliberar();
         lab->imprimeLabirinto();
         vasc->imprimirMapa();
-        sleep_for(milliseconds(800));
+        sleep_for(milliseconds(20));
     }
     cout << "Robo Vasculhador completou" << endl;
 
