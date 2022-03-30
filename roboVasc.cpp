@@ -11,7 +11,7 @@ RoboVasc::RoboVasc(int maxLin, int maxCol, float bat, float temp, Labirinto *amb
     i_explorado = 0;
     i_voltando = 0;
 
-    for (int i = 1; i <= 4; i++)
+    for (int i = 1; i <= 8; i++)
         acoes.push_back(i);
     ambiente = amb;
     for (int i = 0; i < maxLin; i++)
@@ -98,6 +98,7 @@ void RoboVasc::decidirMovimentoNormal()
     if (acaoEscolhida == 0)
     {
         estado = EXPLORANDO;
+        
         Pos aux = procurarObjetivoMaisProximo(-1, posx, posy, &mapa);
         if(aux.first == -1 || aux.second == -1) {
             estado = VOLTANDO;
@@ -106,7 +107,15 @@ void RoboVasc::decidirMovimentoNormal()
             decidirMovimentoVoltando();
             return;
         }
+
         caminho = a_estrela(Pos(posx, posy), aux, mapa);
+        if(caminho.first == -1) {
+            estado = VOLTANDO;
+            caminho = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
+            i_voltando = 0;
+            decidirMovimentoVoltando();
+            return;
+        }
         i_explorado = 0;
         decidirMovimentoExplorando();
         return;

@@ -1,5 +1,12 @@
 #include "a_estrela.h"
 
+bool naoEstouraIndice(Pos elem, Pos tamMax) {
+    if(elem.first >=0 && elem.first < tamMax.first)             //x esta dentro da matriz
+        if(elem.second >=0 && elem.second < tamMax.second) 
+            return true;
+    return false;
+}
+
 bool acessivel(Pos elem, vector<vector<int>> labirinto)
 {
     if(elem.first >=0 && elem.first < labirinto.size())             //x esta dentro da matriz
@@ -118,8 +125,8 @@ Caminho a_estrela(Pos inicial, Pos destino, vector<vector<int>> labirinto)
             continue;
 
         //caso nao tenha sido marca como visitado
-        //cout << "Selecionou: " << x << " " << y 
-        //<< ", filho de: " << elementos[x][y].pai.first << " " << elementos[x][y].pai.second << endl;
+        // cout << "Selecionou: " << x << " " << y 
+        // << ", filho de: " << elementos[x][y].pai.first << " " << elementos[x][y].pai.second << endl;
         ja_visitado[x][y] = true;
 
         //caso o atual seja o destino retorna o caminho
@@ -133,8 +140,11 @@ Caminho a_estrela(Pos inicial, Pos destino, vector<vector<int>> labirinto)
             {
                 Pos vizinho = make_pair(x+i,y+j); //par do vizinho
                 //caso nao seja vago ou vitima ou ja tinha sido visitado, vai pro prox vizinho
-                if(!acessivel(vizinho, labirinto) || ja_visitado[vizinho.first][vizinho.second])
+                if(!naoEstouraIndice(vizinho, Pos(labirinto.size(), labirinto[0].size())))
                     continue;
+                if(!acessivel(vizinho, labirinto) || ja_visitado[vizinho.first][vizinho.second])
+                    if(vizinho.first != destino.first || vizinho.second != destino.second)
+                        continue;
 
                 Dados aux;  //dados do vizinho
 

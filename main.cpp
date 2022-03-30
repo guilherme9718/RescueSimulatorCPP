@@ -71,12 +71,12 @@ int main()
         vasc->deliberar();
         lab->imprimeLabirinto();
         vasc->imprimirMapa();
-        sleep_for(milliseconds(1000));
+        sleep_for(milliseconds(600));
     }
-    cout << "Robo Vasculhador completou" << endl;
+    /* cout << "Robo Vasculhador completou" << endl;
     Caminho cam;
     cout << "--- Teste a* de 0,0 para 0,1 ---" << endl;
-    cam = a_estrela(make_pair(3,2), make_pair(0,0), lab->getLabirinto());
+    cam = a_estrela(make_pair(1,4), make_pair(0,2), lab->getLabirinto());
 
     cout << "Acoes: ";
     for(int i = 0; i < cam.second.size(); i++)
@@ -114,7 +114,7 @@ int main()
     cout << endl;
     cout << "Custo: " << cam.first << endl << endl;
 
-    cout << "Deu certo o/" << endl;
+    cout << "Deu certo o/" << endl; */
 
     
     return 0;
