@@ -65,7 +65,7 @@ int main()
     lab->imprimeLabirinto();
 
     while(vasc->completou == false) {
-        system("clear");
+        //system("clear");
         cout << "Tempo restante: " << vasc->tempo << endl;
         cout << "Estado Robo: " << vasc->estado << endl;
         vasc->deliberar();
