@@ -1,5 +1,11 @@
 #pragma once
 #include "robo.h"
+#include <chrono>
+#include <thread>
+using namespace std;
+
+//Para a ser usado na escolha das vitimas a serem salvas, contem a distancia da base e o indice da matriz de vitimas
+typedef pair<float, int> Vitima;
 
 //Para a ser usado na escolha das vitimas a serem salvas, contem a distancia da base e o indice da matriz de vitimas
 typedef pair<float, int> Vitima;
@@ -13,7 +19,8 @@ class RoboSalv: public Robo
     //matriz de vitimas, cada linha eh uma vitima, cada coluna e um sinal vital, vitimas[][6] e vitimas[][7] sao as coordenadas
     vector<vector<float>> vitimas;
 
-    //TODO - colocar ponteiros para mapa e para matriz sinais vitais 
+    //matriz do planejamento, cada posicao eh o codigo de uma acao
+    vector<vector<int>> acoes;
 
     public:
 
@@ -22,10 +29,12 @@ class RoboSalv: public Robo
 
     void imprimirDados();
     void recebeMatrizes(vector<vector<int>> lab, vector<vector<float>> vit);
-    //Preenche o heap com as vitimas da matriz de vitimas
-    void preenche_heap(priority_queue<Vitima, vector<Vitima>, greater<Vitima>> &heap_vitimas);
+    //planeja o caminho, preenchendo a matriz de acoes
     void planejar();
-    
-    //busca a vitima com menor distancia do ponto p, retorna seu indice da matriz de vitimas
-    int busca_menor_distancia(Pos p);
+
+    //executa as acoes conforme o planejamento da matriz de acoes
+    void executar_plano();
+
+    //imprime o labirinto durante a execucao do plano
+    void imprime_labirinto(Pos robo_pos);
 };

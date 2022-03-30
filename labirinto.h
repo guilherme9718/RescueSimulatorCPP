@@ -29,6 +29,7 @@ class Labirinto
     void imprimeSinaisVitais();
 
     vector<vector<int>> getLabirinto() {return labirinto;}
+    vector<vector<float>> getVitais() {return vitais;}
 
     //Ações
 

@@ -1,6 +1,6 @@
 #include "labirinto.h"
 
-//-2 = agente
+//-2 = vitima salva
 //-1 = desconhecido
 // 0 = parede
 // 1 = vago

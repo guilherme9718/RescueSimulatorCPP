@@ -43,6 +43,8 @@ class RoboVasc: public Robo
     RoboVasc(int x, int y, float bat, float temp, Labirinto* amb);
     ~RoboVasc();
 
+    vector<vector<float>> getVitimas() {return vitimas;}
+
     void imprimirDados();
     void imprimirMapa();
 

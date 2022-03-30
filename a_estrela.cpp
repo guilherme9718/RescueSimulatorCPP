@@ -17,6 +17,22 @@ bool acessivel(Pos elem, vector<vector<int>> labirinto)
     return false;
 }
 
+void constroi_dados(vector<vector<Dados>> &d, Pos max)
+{
+    Dados d_aux;
+    d_aux.f = numeric_limits<float>::max();
+    d_aux.g = numeric_limits<float>::max();
+    d_aux.pai = make_pair(-1,-1);
+    d_aux.acao = 0;
+
+    vector<Dados> aux;
+    for(int j = 0; j < max.second; j++)
+        aux.push_back(d_aux);
+
+    for(int i = 0; i < max.first; i++)
+        d.push_back(aux);
+}
+
 double calculaDist(Pos p1, Pos p2)
 {
     return sqrt(pow((p1.first - p2.first),2) + pow((p1.second - p2.second),2));

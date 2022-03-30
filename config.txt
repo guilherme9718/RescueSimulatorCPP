@@ -2,6 +2,6 @@ maxLin=3
 maxCol=4
 Tv=150
 Ts=30
-Bv=50
+Bv=150
 Bs=60
 Ks=2

@@ -62,21 +62,22 @@ int main()
 
     vasc->imprimirDados();
     salv->imprimirDados();
+    system("clear");
     lab->imprimeLabirinto();
 
-    while(vasc->completou == false) {
-        //system("clear");
+    /*while(vasc->completou == false) {
+        system("clear");
         cout << "Tempo restante: " << vasc->tempo << endl;
         cout << "Estado Robo: " << vasc->estado << endl;
         vasc->deliberar();
         lab->imprimeLabirinto();
         vasc->imprimirMapa();
-        sleep_for(milliseconds(600));
-    }
-    /* cout << "Robo Vasculhador completou" << endl;
+        sleep_for(milliseconds(1000));
+    }*/
+    /*cout << "Robo Vasculhador completou" << endl;
     Caminho cam;
-    cout << "--- Teste a* de 0,0 para 0,1 ---" << endl;
-    cam = a_estrela(make_pair(1,4), make_pair(0,2), lab->getLabirinto());
+    cout << "--- Teste a* de 2,2 para 1,1 ---" << endl;
+    cam = a_estrela(make_pair(2,2), make_pair(1,1), lab->getLabirinto());
 
     cout << "Acoes: ";
     for(int i = 0; i < cam.second.size(); i++)
@@ -86,35 +87,28 @@ int main()
     cout << endl;
     cout << "Custo: " << cam.first << endl << endl;
 
-    cout << "Deu certo o/" << endl;
+    cout << "Deu certo o/" << endl;*/
 
+    vector<vector<float>> v;
+    v = lab->getVitais();
 
-    cout << "--- Teste a* de 0,0 para 1,4 ---" << endl;
-    cam = a_estrela(make_pair(2,0), make_pair(0,0), lab->getLabirinto());
-
-    cout << "Acoes: ";
-    for(int i = 0; i < cam.second.size(); i++)
+    v[0].push_back(0);
+    v[0].push_back(1);
+    v[1].push_back(1);
+    v[1].push_back(4);
+    v[2].push_back(2);
+    v[2].push_back(3);
+    /*for(int i = 0; i < v.size(); i++)
     {
-        cout << cam.second[i] << " ";
-    }
-    cout << endl;
-    cout << "Custo: " << cam.first << endl << endl;
-
-    cout << "Deu certo o/" << endl;
-
-
-    cout << "--- Teste a* de 0,0 para 2,3 ---" << endl;
-    cam = a_estrela(make_pair(3,0), make_pair(0,0), lab->getLabirinto());
-
-    cout << "Acoes: ";
-    for(int i = 0; i < cam.second.size(); i++)
-    {
-        cout << cam.second[i] << " ";
-    }
-    cout << endl;
-    cout << "Custo: " << cam.first << endl << endl;
-
-    cout << "Deu certo o/" << endl; */
+        cout << "Vitima " << i << ": ";
+        for(int j = 0; j < v[i].size(); j++)
+        {
+            cout << v[i][j] << " ";
+        }
+        cout << endl;
+    }*/
+    salv->recebeMatrizes(lab->getLabirinto(), v);
+    salv->planejar();
 
     
     return 0;
