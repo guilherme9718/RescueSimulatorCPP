@@ -58,6 +58,8 @@ class RoboVasc: public Robo
     void decidirMovimentoExplorando();
     void decidirMovimentoVoltando();
 
+    vector<vector<int>> getMapa();
+
     Estado estado;
 };
 

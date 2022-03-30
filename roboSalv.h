@@ -7,6 +7,9 @@ using namespace std;
 //Para a ser usado na escolha das vitimas a serem salvas, contem a distancia da base e o indice da matriz de vitimas
 typedef pair<float, int> Vitima;
 
+//Para a ser usado na escolha das vitimas a serem salvas, contem a distancia da base e o indice da matriz de vitimas
+typedef pair<float, int> Vitima;
+
 class RoboSalv: public Robo
 {
     private:

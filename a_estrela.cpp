@@ -1,5 +1,12 @@
 #include "a_estrela.h"
 
+bool naoEstouraIndice(Pos elem, Pos tamMax) {
+    if(elem.first >=0 && elem.first < tamMax.first)             //x esta dentro da matriz
+        if(elem.second >=0 && elem.second < tamMax.second) 
+            return true;
+    return false;
+}
+
 bool acessivel(Pos elem, vector<vector<int>> labirinto)
 {
     if(elem.first >=0 && elem.first < labirinto.size())             //x esta dentro da matriz
@@ -118,8 +125,8 @@ Caminho a_estrela(Pos inicial, Pos destino, vector<vector<int>> labirinto)
             continue;
 
         //caso nao tenha sido marca como visitado
-        //cout << "Selecionou: " << x << " " << y 
-        //<< ", filho de: " << elementos[x][y].pai.first << " " << elementos[x][y].pai.second << endl;
+        // cout << "Selecionou: " << x << " " << y 
+        // << ", filho de: " << elementos[x][y].pai.first << " " << elementos[x][y].pai.second << endl;
         ja_visitado[x][y] = true;
 
         //caso o atual seja o destino retorna o caminho
@@ -133,8 +140,11 @@ Caminho a_estrela(Pos inicial, Pos destino, vector<vector<int>> labirinto)
             {
                 Pos vizinho = make_pair(x+i,y+j); //par do vizinho
                 //caso nao seja vago ou vitima ou ja tinha sido visitado, vai pro prox vizinho
-                if(!acessivel(vizinho, labirinto) || ja_visitado[vizinho.first][vizinho.second])
+                if(!naoEstouraIndice(vizinho, Pos(labirinto.size(), labirinto[0].size())))
                     continue;
+                if(!acessivel(vizinho, labirinto) || ja_visitado[vizinho.first][vizinho.second])
+                    if(vizinho.first != destino.first || vizinho.second != destino.second)
+                        continue;
 
                 Dados aux;  //dados do vizinho
 
@@ -168,33 +178,55 @@ Caminho a_estrela(Pos inicial, Pos destino, vector<vector<int>> labirinto)
     falhou.first = -1;
     return falhou;
 }
-pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int posyInicial, vector<vector<int>> *mapa) {
-    queue<pair<int, int>> fronteira;
 
-    //Aloca e zera vetor para programação dinâmica
+bool acessivelLargura(Pos elem, vector<vector<int>> labirinto)
+{
+    if(elem.first >=0 && elem.first < labirinto.size())             //x esta dentro da matriz
+        if(elem.second >=0 && elem.second < labirinto[0].size())    //y esta dentro da matriz
+            if(labirinto[elem.first][elem.second] != 0)              // > 0 vago ou pessoa
+                return true;
+
+    return false;
+}
+
+vector<vector<bool>> criaVetorExplorado(Pos tamMax) {
     vector<vector<bool>> explorado;
-    explorado.reserve(mapa->size());
-    for(int i=0; i < mapa->size(); i++) {
+    explorado.reserve(tamMax.first);
+    for(int i=0; i < tamMax.first; i++) {
         vector<bool>* aux = new vector<bool>;
-        aux->reserve(mapa->at(0).size());
-        for(int j = 0; j < mapa->at(0).size(); j++) {
+        aux->reserve(tamMax.second);
+        for(int j = 0; j < tamMax.second; j++) {
             aux->push_back(false);
         }
         explorado.push_back(*aux);
     }
+    return explorado;
+}
+
+pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int posyInicial, vector<vector<int>> *mapa) {
+    queue<pair<int, int>> fronteira;
+
+    //Aloca e zera vetor para programação dinâmica
+    vector<vector<bool>> explorado = criaVetorExplorado(Pos(mapa->size(), mapa->at(0).size()));
     explorado[posxInicial][posyInicial] = true;
     int posx = posxInicial, posy = posyInicial;
+
     
     do {
         //Explora as redondezas
+        //cout << "tamX: " << mapa->size() << "; tamY: " << mapa->at(1).size();
         for(int i=-1; i < 2; i++) {
             for(int j=-1; j < 2; j++) {
                 Pos parAux;
                 parAux.first = posx+i;
                 parAux.second = posy+j;
-                if(acessivel(parAux, *mapa))
-                    if(explorado[parAux.first][parAux.second] == false)
+                //cout << "par (" << parAux.first << "," << parAux.second << ") = " << mapa->at(parAux.first).at(parAux.second) << endl;
+                
+                if(acessivelLargura(parAux, *mapa) && !(i == 0 && j == 0))
+                    if(explorado[parAux.first][parAux.second] == false) {
+                        //cout << "par (" << parAux.first << "," << parAux.second << ") escolhido filho de (" << posx << "," << posy << ")" << endl;
                         fronteira.push(parAux);
+                    }
             }
         }
 
@@ -206,8 +238,11 @@ pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int
                 explorado[j].clear();
             }
             explorado.clear();
+            cout << "par (" << exp.first << "," << exp.second << ") escolhido filho de (" << posx << "," << posy << ")" << endl;
             return exp;
         }
+        posx = exp.first;
+        posy = exp.second;
     } while(fronteira.size() > 0);
 
     //nao achou
@@ -216,3 +251,4 @@ pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int
     aux.second = -1;
     return aux;
 }
+
