@@ -1,6 +1,7 @@
 #include "labirinto.h"
 #include "roboSalv.h"
 #include "roboVasc.h"
+#include "a_estrela.h"
 
 #include <fstream>
 #include <iostream>
@@ -26,18 +27,23 @@ void inicializarLabirinto(RoboVasc** v, RoboSalv** s, Labirinto** l)
     {
         int i = static_cast<int>(linha.find('='))+ 1;
         int aux = 0;
-        while(i < linha.size())
+        while(linha[i] != 13) // antigo == i < linha.size()
         {
+            cout << linha[i]-48 << " ";
             aux *= 10;
             aux += linha[i]-48;
             i++;
         }
+        cout << endl;
         dados.push_back(aux);
     }
 
-    *l = new Labirinto(dados[0], dados[1]);
+    for(int i = 0; i < dados.size(); i++)
+        cout << endl << dados[i] << " ";
 
-    *v = new RoboVasc(dados[0], dados[1], dados[4], dados[2], *l);
+    *l = new Labirinto(dados[0]+1, dados[1]+1);
+
+    *v = new RoboVasc(dados[0]+1, dados[1]+1, dados[4], dados[2], *l);
 
     *s = new RoboSalv(dados[6], dados[5], dados[3]);
 
@@ -56,15 +62,54 @@ int main()
 
     vasc->imprimirDados();
     salv->imprimirDados();
+    system("clear");
     lab->imprimeLabirinto();
 
-    while(vasc->completou == false) {
+    /*while(vasc->completou == false) {
         system("clear");
+        cout << "Tempo restante: " << vasc->tempo << endl;
+        cout << "Estado Robo: " << vasc->estado << endl;
         vasc->deliberar();
         lab->imprimeLabirinto();
         vasc->imprimirMapa();
-        sleep_for(milliseconds(300));
+        sleep_for(milliseconds(1000));
+    }*/
+    /*cout << "Robo Vasculhador completou" << endl;
+    Caminho cam;
+    cout << "--- Teste a* de 2,2 para 1,1 ---" << endl;
+    cam = a_estrela(make_pair(2,2), make_pair(1,1), lab->getLabirinto());
+
+    cout << "Acoes: ";
+    for(int i = 0; i < cam.second.size(); i++)
+    {
+        cout << cam.second[i] << " ";
     }
+    cout << endl;
+    cout << "Custo: " << cam.first << endl << endl;
+
+    cout << "Deu certo o/" << endl;*/
+
+    vector<vector<float>> v;
+    v = lab->getVitais();
+
+    v[0].push_back(0);
+    v[0].push_back(1);
+    v[1].push_back(1);
+    v[1].push_back(4);
+    v[2].push_back(2);
+    v[2].push_back(3);
+    /*for(int i = 0; i < v.size(); i++)
+    {
+        cout << "Vitima " << i << ": ";
+        for(int j = 0; j < v[i].size(); j++)
+        {
+            cout << v[i][j] << " ";
+        }
+        cout << endl;
+    }*/
+    salv->recebeMatrizes(lab->getLabirinto(), v);
+    salv->planejar();
+
     
     return 0;
 }

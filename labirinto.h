@@ -14,7 +14,10 @@ class Labirinto
 
     vector<vector<int>> labirinto;
     int vitimaCount;
+    vector<vector<float>> vitais;
 
+    int roboposx;
+    int roboposy;
     public:
 
     Labirinto(int x, int y);
@@ -22,6 +25,11 @@ class Labirinto
 
     void imprimeLabirinto();
     void PreencheLabirinto();
+    void preencheSinaisVitais();
+    void imprimeSinaisVitais();
+
+    vector<vector<int>> getLabirinto() {return labirinto;}
+    vector<vector<float>> getVitais() {return vitais;}
 
     //Ações
 
@@ -34,7 +42,7 @@ class Labirinto
     Percepcao moverSudeste(Robo* robo);
     Percepcao moverSudoeste(Robo* robo);
     Percepcao pegarVitima(Robo* robo);
-    vector<int>* LerSinaisVitais(Robo* robo);
+    vector<float> LerSinaisVitais(Robo* robo, int i);
 
     bool validaAcao(Robo* robo, int posx, int posy); 
     Percepcao mover(Robo* robo, int movX, int movY);
