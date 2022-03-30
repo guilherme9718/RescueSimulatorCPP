@@ -312,3 +312,7 @@ void RoboVasc::Mover(int acao) {
         break;
     }
 }
+
+vector<vector<int>> RoboVasc::getMapa() {
+    return mapa;
+}
