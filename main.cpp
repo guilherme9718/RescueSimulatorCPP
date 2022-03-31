@@ -27,14 +27,14 @@ void inicializarLabirinto(RoboVasc** v, RoboSalv** s, Labirinto** l)
     {
         int i = static_cast<int>(linha.find('='))+ 1;
         int aux = 0;
-        while(linha[i] != 13) // antigo == i < linha.size()
+        while(linha[i] >= '0' && linha[i] <= '9') // antigo == i < linha.size()
         {
             cout << linha[i]-48 << " ";
             aux *= 10;
             aux += linha[i]-48;
             i++;
         }
-        cout << endl;
+        cout << "dados: " << aux << endl;
         dados.push_back(aux);
     }
 
@@ -72,28 +72,11 @@ int main()
         vasc->deliberar();
         lab->imprimeLabirinto();
         vasc->imprimirMapa();
-        sleep_for(milliseconds(20));
+        //sleep_for(milliseconds(50));
     }
+    system("clear");
     cout << "Robo Vasculhador completou" << endl;
-
-    //vector<vector<float>> v;
-    //v = lab->getVitais();
-
-    // v[0].push_back(0);
-    // v[0].push_back(1);
-    // v[1].push_back(1);
-    // v[1].push_back(4);
-    // v[2].push_back(2);
-    // v[2].push_back(3);
-    /*for(int i = 0; i < v.size(); i++)
-    {
-        cout << "Vitima " << i << ": ";
-        for(int j = 0; j < v[i].size(); j++)
-        {
-            cout << v[i][j] << " ";
-        }
-        cout << endl;
-    }*/
+    
     salv->recebeMatrizes(vasc->getMapa(), vasc->getVitimas());
     salv->planejar();
 

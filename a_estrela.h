@@ -6,6 +6,8 @@
 #include <limits>
 #include <cstring>
 #include <queue>
+#include <list>
+#include <stdlib.h>
 
 using namespace std;
 

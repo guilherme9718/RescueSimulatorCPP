@@ -75,7 +75,7 @@ void RoboSalv::executar_plano()
     using namespace std::this_thread;
     using namespace std::chrono;
 
-    sleep_for(milliseconds(3000));
+    sleep_for(milliseconds(6000));
     system("clear");
     Pos robo_pos = make_pair(0,0);
     float t = tempo;
@@ -197,6 +197,7 @@ void RoboSalv::planejar()
     for(int i = 0; i < vitimas.size(); i++)
     {
         float d = calculaDist(make_pair(0,0), make_pair(vitimas[i][6], vitimas[i][7]));
+        cout << vitimas[i][6] << " " << vitimas[i][7] << endl;
         heap_vitimas.push(make_pair(d,i));
     }
 
@@ -221,7 +222,9 @@ void RoboSalv::planejar()
             //pega a vitima mais perto da base
             Vitima v = heap_vitimas.top();
             //calcula os caminhos, com o a*, ida do atual ate a vitima selecionada e volta da vitima selecionada ate a base
+            cout << "ida " << endl;
             Caminho ida = a_estrela(atual, make_pair(vitimas[v.second][6], vitimas[v.second][7]), labirinto);
+            cout << "volta " << endl;
             Caminho volta = a_estrela(make_pair(vitimas[v.second][6], vitimas[v.second][7]), make_pair(0,0), labirinto);
 
             //caso o tempo acumulado + ir ate a vitima e salva-la + voltar seja menor que o tempo restante

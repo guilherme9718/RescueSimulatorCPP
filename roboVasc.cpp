@@ -269,16 +269,16 @@ void RoboVasc::imprimirMapa()
         cout << endl;
     }
 
-    cout << "--- Sinais vitais encontrados ---\n";
-    for (int i = 0; i < vitimas.size(); i++)
-    {
-        cout << "Vitima " << i << ": ";
-        for (int j = 0; j < vitimas[i].size(); j++)
-        {
-            cout << vitimas[i][j] << " ";
-        }
-        cout << endl;
-    }
+    // cout << "--- Sinais vitais encontrados ---\n";
+    // for (int i = 0; i < vitimas.size(); i++)
+    // {
+    //     cout << "Vitima " << i << ": ";
+    //     for (int j = 0; j < vitimas[i].size(); j++)
+    //     {
+    //         cout << vitimas[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
 }
 
 void RoboVasc::Mover(int acao) {
