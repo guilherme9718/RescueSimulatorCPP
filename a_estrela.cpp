@@ -31,9 +31,11 @@ void constroi_dados(vector<vector<Dados>> &d, Pos max)
     d_aux.acao = 0;
 
     vector<Dados> aux;
+    aux.reserve(max.second);
     for(int j = 0; j < max.second; j++)
         aux.push_back(d_aux);
 
+    d.reserve(max.first);
     for(int i = 0; i < max.first; i++)
         d.push_back(aux);
 }
@@ -43,6 +45,15 @@ Caminho interpreta_caminho(vector<vector<Dados>> elementos, Pos inicial, Pos des
     vector<int> acoes;
     int i = destino.first;
     int j = destino.second;
+    Caminho aux;
+
+    if(inicial.first == destino.first && inicial.second == destino.second)
+    {
+        acoes.push_back(0);
+        aux.first = 0;
+        aux.second = acoes;
+        return aux;
+    }
 
     do
     {
@@ -58,7 +69,6 @@ Caminho interpreta_caminho(vector<vector<Dados>> elementos, Pos inicial, Pos des
     for(int i = acoes.size()-1; i >=0; i--)
         rev.push_back(acoes[i]);
 
-    Caminho aux;
     aux.first = elementos[destino.first][destino.second].f;
     aux.second = rev;
     return aux;
@@ -237,8 +247,8 @@ pair<int, int> procurarObjetivoMaisProximo(int codObjetivo, int posxInicial, int
             for(int j = 0; j < mapa->at(0).size(); j++) {
                 explorado[j].clear();
             }
-            explorado.clear();
-            cout << "par (" << exp.first << "," << exp.second << ") escolhido filho de (" << posx << "," << posy << ")" << endl;
+            //explorado.clear();
+            //cout << "par (" << exp.first << "," << exp.second << ") escolhido filho de (" << posx << "," << posy << ")" << endl;
             return exp;
         }
         posx = exp.first;

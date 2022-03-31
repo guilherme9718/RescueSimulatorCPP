@@ -215,7 +215,7 @@ Caminho RoboVasc::consegueVoltarBateria(Pos objetivo, bool &consegue)
     cam = a_estrela(Pos(posx, posy), Pos(0, 0), mapa);
     if ((objetivo.first - posx != 0) && (objetivo.second - posy != 0))
         custoObj = 1.5;
-    if (cam.first > bateria - custoObj)
+    if (cam.first > bateria - custoObj || cam.first > tempo - custoObj)
         consegue = false;
     return cam;
 }
@@ -265,17 +265,6 @@ void RoboVasc::imprimirMapa()
                 break;
             }
             cout << c << " ";
-        }
-        cout << endl;
-    }
-
-    cout << "--- Sinais vitais encontrados ---\n";
-    for (int i = 0; i < vitimas.size(); i++)
-    {
-        cout << "Vitima " << i << ": ";
-        for (int j = 0; j < vitimas[i].size(); j++)
-        {
-            cout << vitimas[i][j] << " ";
         }
         cout << endl;
     }

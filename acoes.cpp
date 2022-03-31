@@ -43,67 +43,50 @@ Percepcao Labirinto::mover(Robo* robo, int movX, int movY) {
 }
 
 Percepcao Labirinto::moverNorte(Robo* robo) {
-    cout << "Acao tomada: moverNorte" << endl;
+    //cout << "Acao tomada: moverNorte" << endl;
     int movX=-1, movY=0;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverSul(Robo* robo) {
-    cout << "Acao tomada: moverSul" << endl;
+    //cout << "Acao tomada: moverSul" << endl;
     int movX=1, movY=0;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverLeste(Robo* robo) {
-    cout << "Acao tomada: moverLeste" << endl;
+    //cout << "Acao tomada: moverLeste" << endl;
     int movX=0, movY=1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverOeste(Robo* robo) {
-    cout << "Acao tomada: moverOeste" << endl;
+    //cout << "Acao tomada: moverOeste" << endl;
     int movX=0, movY=-1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverNordeste(Robo* robo) {
-    cout << "Acao tomada: moverNordeste" << endl;
+    //cout << "Acao tomada: moverNordeste" << endl;
     int movX=-1, movY=1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverNoroeste(Robo* robo) {
-    cout << "Acao tomada: moverNoroeste" << endl;
+    //cout << "Acao tomada: moverNoroeste" << endl;
     int movX=-1, movY=-1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverSudeste(Robo* robo) {
-    cout << "Acao tomada: moverSudeste" << endl;
+    //cout << "Acao tomada: moverSudeste" << endl;
     int movX=1, movY=1;
     return mover(robo, movX, movY);
 }
 Percepcao Labirinto::moverSudoeste(Robo* robo) {
-    cout << "Acao tomada: moverSudoeste" << endl;
+    //cout << "Acao tomada: moverSudoeste" << endl;
     int movX=1, movY=-1;
     return mover(robo, movX, movY);
 }
-/*
-Percepcao Labirinto::pegarVitima(Robo* robo) {
-cout << "Acao tomada: pegarVitima" << endl;
-}
-*/
 vector<float> Labirinto::LerSinaisVitais(Robo* robo, int i) {
-    cout << "Acao tomada: LerSinaisVitais" << endl;
+    //cout << "Acao tomada: LerSinaisVitais" << endl;
     vector<float>* sinais;
     robo->bateria -= 2;
     robo->tempo -= 2;
 
     return vitais[i];
-    /*
-    if(robo->bateria > 0 && robo->tempo > 0) {
-        if(robo->posx >= 0 && robo->posx < labirinto.size()) {
-            if(robo->posy >=0 && robo->posy < labirinto[robo->posx].size()) {
-                if(labirinto[robo->posx][robo->posy] > 1) {
-                    return vitais[i];
-                }
-            }
-        }
-    }
-    return nullptr;
-    */
 }

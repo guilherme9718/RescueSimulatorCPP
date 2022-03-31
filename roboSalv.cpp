@@ -75,7 +75,7 @@ void RoboSalv::executar_plano()
     using namespace std::this_thread;
     using namespace std::chrono;
 
-    sleep_for(milliseconds(10000));
+    sleep_for(milliseconds(6000));
     system("clear");
     Pos robo_pos = make_pair(0,0);
     float t = tempo;
@@ -183,7 +183,7 @@ void RoboSalv::executar_plano()
                 break;
             }
             imprime_labirinto(robo_pos);
-            sleep_for(milliseconds(2000));
+            sleep_for(milliseconds(50));
             system("clear");
         }
     }
@@ -197,6 +197,7 @@ void RoboSalv::planejar()
     for(int i = 0; i < vitimas.size(); i++)
     {
         float d = calculaDist(make_pair(0,0), make_pair(vitimas[i][6], vitimas[i][7]));
+        cout << vitimas[i][6] << " " << vitimas[i][7] << endl;
         heap_vitimas.push(make_pair(d,i));
     }
 
