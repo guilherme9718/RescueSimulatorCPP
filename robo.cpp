@@ -3,7 +3,7 @@
 Robo::Robo(float bat, float temp)
 {
     posx = posy = 0;
-    bateria = bat;
+    bateria = bateria_i = bat;
     tempo = temp;
     completou = false;
 }

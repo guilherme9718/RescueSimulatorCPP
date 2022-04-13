@@ -18,6 +18,7 @@ class Robo
     int posx;
     int posy;
     float bateria;
+    float bateria_i;
     float tempo;
 
     bool completou;
